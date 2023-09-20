@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculador imc</title>
+    <script>
+        function calcular() {
+            let peso = document.getElementById("txtPeso").value;
+            let altura = document.getElementById("txtAltura").value;
+            let imc = 0 
+            if (peso == "" || altura == "" || peso < 0 || altura < 0) {
+                alert(`Insira valores válidos em todos os campos`)
+            }
+            else {
+                imc = Number(peso) / (Number(altura) ** 2)
+                document.getElementById("txtresultado").value = imc.toFixed(2);
+            }
+            if(imc < 18.5){
+                document.getElementById("resultadoBonito").style.display = "flexbox";
+                document.getElementById("txtResultadoBonito").value = "Abaixo do peso"
+                document.getElementById("cor").style.color = "red"
+            }
+        }
+        function limpar() {
+            document.getElementById("txtPeso").value = "";
+            document.getElementById("txtAltura").value = "";
+            document.getElementById("txtresultado").value = "";
+        }
+    </script>
+    <style>
+        body{
+            background-color: aquamarine;
+        }
+        h1{
+            text-align: center;
+            font-size: 35px;
+        }
+        .campoPreenchimento{
+            background-color: white;
+            margin: auto;
+            width: 30%;
+            text-align: center;
+            font-size: 25px;
+            border-radius: 10px;
+            height: 200px;
+        }
+        #resultadoBonito{
+            margin-top: 30px;
+            width: 30%;
+            margin: auto;
+            background-color: white;
+            height: 150px;
+            border-radius: 10px;
+            display: none;
+        }
+        #cor{
+            background-color: blue;
+            width: 30px;
+            height: 70px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Calculadora IMC</h1>
+    <div class="campoPreenchimento">
+        <label for="txtPeso">Insira seu peso:</label><br>
+        <input type="number" name="" id="txtPeso"><br>
+        <label for="txtAltura">Insira sua altura</label><br>
+        <input type="number" name="" id="txtAltura"><br>
+        <label for="txtresultado">IMC:</label><br>
+        <input type="number" name="" id="txtresultado" disabled><br>
+        <input type="button" value="Calcular" onclick="calcular();">
+        <input type="button" value="Limpar" onclick="limpar();">
+    </div>
+    <div id="resultadoBonito"><div id="cor"></div><h2 id="txtResultadoBonito"></h2>
+        <div id="cor"></div>
+    </div>
+</body>
+
+</html>
