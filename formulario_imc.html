@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
         function calcular() {
             let peso = document.getElementById("txtPeso").value;
             let altura = document.getElementById("txtAltura").value;
-            let imc = 0 
+            let imc = 0
             if (peso == "" || altura == "" || peso < 0 || altura < 0) {
                 alert(`Insira valores válidos em todos os campos`)
             }
@@ -17,10 +17,36 @@
                 imc = Number(peso) / (Number(altura) ** 2)
                 document.getElementById("txtresultado").value = imc.toFixed(2);
             }
-            if(imc < 18.5){
-                document.getElementById("resultadoBonito").style.display = "flexbox";
-                document.getElementById("txtResultadoBonito").value = "Abaixo do peso"
-                document.getElementById("cor").style.color = "red"
+
+            if (imc < 18.5) {
+                document.getElementById("txtResultadoBonito").innerText = "Abaixo do peso"
+                document.getElementById("cor").style.backgroundColor = "yellow"
+                document.getElementById("cor2").style.backgroundColor = "yellow"
+            }
+            else if (imc >= 18.5 && imc < 25) {
+                document.getElementById("txtResultadoBonito").innerText = "Peso normal"
+                document.getElementById("cor").style.backgroundColor = "green"
+                document.getElementById("cor2").style.backgroundColor = "green"
+            }
+            else if (imc >= 25 && imc < 30) {
+                document.getElementById("txtResultadoBonito").innerText = "Sobrepeso"
+                document.getElementById("cor").style.backgroundColor = "yellow"
+                document.getElementById("cor2").style.backgroundColor = "yellow"
+            }
+            else if (imc >= 30 && imc < 35) {
+                document.getElementById("txtResultadoBonito").innerText = "Obesidade grau I"
+                document.getElementById("cor").style.backgroundColor = "orange"
+                document.getElementById("cor2").style.backgroundColor = "orange"
+            }
+            else if (imc >= 35 && imc < 40) {
+                document.getElementById("txtResultadoBonito").innerText = "Obesidade grau II"
+                document.getElementById("cor").style.backgroundColor = "red"
+                document.getElementById("cor2").style.backgroundColor = "red"
+            }
+            else if (imc >= 40) {
+                document.getElementById("txtResultadoBonito").innerText = "Obesidade mórbida"
+                document.getElementById("cor").style.backgroundColor = "black"
+                document.getElementById("cor2").style.backgroundColor = "black"
             }
         }
         function limpar() {
@@ -30,36 +56,50 @@
         }
     </script>
     <style>
-        body{
+        body {
             background-color: aquamarine;
         }
-        h1{
+
+        h1 {
             text-align: center;
             font-size: 35px;
         }
-        .campoPreenchimento{
+
+        .campoPreenchimento {
             background-color: white;
             margin: auto;
             width: 30%;
             text-align: center;
             font-size: 25px;
-            border-radius: 10px;
+            border-radius: 10px 10px 0px 0px;
             height: 200px;
         }
-        #resultadoBonito{
+
+        #resultadoBonito {
             margin-top: 30px;
             width: 30%;
             margin: auto;
             background-color: white;
             height: 150px;
-            border-radius: 10px;
-            display: none;
+            border-radius: 0px 0px 10px 10px;
+            display: flex;
         }
-        #cor{
-            background-color: blue;
+
+        #cor {
             width: 30px;
-            height: 70px;
+            height: 80px;
             margin: auto;
+        }
+
+        #cor2 {
+            width: 30px;
+            height: 80px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 55px;
         }
     </style>
 </head>
@@ -67,17 +107,19 @@
 <body>
     <h1>Calculadora IMC</h1>
     <div class="campoPreenchimento">
-        <label for="txtPeso">Insira seu peso:</label><br>
+        <label for="txtPeso">Insira seu peso(em kg):</label><br>
         <input type="number" name="" id="txtPeso"><br>
-        <label for="txtAltura">Insira sua altura</label><br>
+        <label for="txtAltura">Insira sua altura(em metros):</label><br>
         <input type="number" name="" id="txtAltura"><br>
         <label for="txtresultado">IMC:</label><br>
         <input type="number" name="" id="txtresultado" disabled><br>
         <input type="button" value="Calcular" onclick="calcular();">
         <input type="button" value="Limpar" onclick="limpar();">
     </div>
-    <div id="resultadoBonito"><div id="cor"></div><h2 id="txtResultadoBonito"></h2>
+    <div id="resultadoBonito">
         <div id="cor"></div>
+        <h2 id="txtResultadoBonito"></h2>
+        <div id="cor2"></div>
     </div>
 </body>
 
